@@ -1,0 +1,5 @@
+package com.insta.instagram.model;
+
+public class Comment {
+
+}

@@ -1,0 +1,20 @@
+package com.insta.instagram.model;
+
+import javax.persistence.Embedded;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+import com.insta.instagram.dto.UserDTO;
+
+public class Comment {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	
+	@Embedded
+	private UserDTO user;
+	
+	
+}

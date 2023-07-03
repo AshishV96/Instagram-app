@@ -1,0 +1,33 @@
+package com.insta.instagram.model;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.insta.instagram.dto.UserDTO;
+
+@Entity
+@Table(name = "users")
+public class User {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String name;
+	private String username;
+	private String email;
+	private String mobile;
+	private String website;
+	private String bio;
+	private String gender;
+	private String image;
+	private String password;
+	private Set<UserDTO> follower = new HashSet<UserDTO>();
+	
+	
+}
