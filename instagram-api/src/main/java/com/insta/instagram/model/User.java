@@ -49,10 +49,14 @@ public class User {
 	
 	@ManyToMany
 	private List<Post> savedPost = new ArrayList<>();
-	
+
+	public User() {
+
+	}
+
 	public User(Integer id, String name, String username, String email, String mobile, String website, String bio,
-			String gender, String image, String password, Set<UserDTO> follower, Set<UserDTO> following,
-			List<Story> stories, List<Post> savedPost) {
+				String gender, String image, String password, Set<UserDTO> follower, Set<UserDTO> following,
+				List<Story> stories, List<Post> savedPost) {
 		super();
 		this.id = id;
 		this.name = name;
