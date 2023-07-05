@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @ControllerAdvice
-public class GlobalExceptions extends Exception {
+public class GlobalExceptions {
 
     @ExceptionHandler(UserException.class)
     public ResponseEntity<ErrorDetails> userExceptionHandler(UserException ue, WebRequest req)
