@@ -1,5 +1,6 @@
 package com.insta.instagram.service;
 
+import com.insta.instagram.dto.UserDTO;
 import com.insta.instagram.exceptions.UserException;
 import com.insta.instagram.model.User;
 import com.insta.instagram.repository.UserRepository;
@@ -68,26 +69,125 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public String followUser(Integer reqUserId, Integer followUserId) throws UserException {
-        return null;
+
+        User reqUser = findUserById(reqUserId);
+        User followUser = findUserById(followUserId);
+
+        UserDTO follower = new UserDTO();
+
+        follower.setEmail(reqUser.getEmail());
+        follower.setId(reqUser.getId());
+        follower.setName(reqUser.getName());
+        follower.setUserImage(reqUser.getImage());
+        follower.setUsername(reqUser.getUsername());
+
+        UserDTO following = new UserDTO();
+
+        following.setEmail(follower.getEmail());
+        following.setId(follower.getId());
+        following.setName(follower.getName());
+        following.setUserImage(follower.getUserImage());
+        following.setUsername(follower.getUsername());
+
+        reqUser.getFollowing().add(following);
+        followUser.getFollower().add(follower);
+
+        userRepository.save(followUser);
+        userRepository.save(reqUser);
+
+        return "You are following "+followUser.getUsername();
     }
 
     @Override
     public String unFollowUser(Integer reqUserId, Integer followUserId) throws UserException {
-        return null;
+
+        User reqUser = findUserById(reqUserId);
+        User followUser = findUserById(followUserId);
+
+        UserDTO follower = new UserDTO();
+
+        follower.setEmail(reqUser.getEmail());
+        follower.setId(reqUser.getId());
+        follower.setName(reqUser.getName());
+        follower.setUserImage(reqUser.getImage());
+        follower.setUsername(reqUser.getUsername());
+
+        UserDTO following = new UserDTO();
+
+        following.setEmail(follower.getEmail());
+        following.setId(follower.getId());
+        following.setName(follower.getName());
+        following.setUserImage(follower.getUserImage());
+        following.setUsername(follower.getUsername());
+
+        reqUser.getFollowing().remove(following);
+        followUser.getFollower().remove(follower);
+
+        userRepository.save(followUser);
+        userRepository.save(reqUser);
+
+        return "You had unfollowed "+followUser.getUsername();
     }
 
     @Override
     public List<User> findUserByIds(List<Integer> userIds) throws UserException {
-        return null;
+
+        List<User> users = userRepository.findAllUsersByUserIds(userIds);
+        return users;
     }
 
     @Override
     public List<User> searchUser(String query) throws UserException {
-        return null;
+
+        List<User> users = userRepository.findByQuery(query);
+        if(users.size()==0)
+        {
+            throw new UserException("User not found");
+        }
+        return users;
     }
 
     @Override
     public User updateUserDetails(User updatedUser, User existingUser) throws UserException {
-        return null;
+
+        if(updatedUser.getEmail()!=null)
+        {
+            existingUser.setEmail(updatedUser.getEmail());
+        }
+        if(updatedUser.getBio()!=null)
+        {
+            existingUser.setBio(updatedUser.getBio());
+        }
+        if(updatedUser.getName()!=null)
+        {
+            existingUser.setName(updatedUser.getName());
+        }
+        if(updatedUser.getUsername()!=null)
+        {
+            existingUser.setUsername(updatedUser.getUsername());
+        }
+        if(updatedUser.getMobile()!=null)
+        {
+            existingUser.setMobile(updatedUser.getMobile());
+        }
+        if(updatedUser.getGender()!=null)
+        {
+            existingUser.setGender(updatedUser.getGender());
+        }
+        if(updatedUser.getWebsite()!=null)
+        {
+            existingUser.setWebsite(updatedUser.getWebsite());
+        }
+        if(updatedUser.getImage()!=null)
+        {
+            existingUser.setImage(updatedUser.getImage());
+        }
+        if(updatedUser.getId().equals(existingUser.getId()))
+        {
+            return userRepository.save(existingUser);
+        }
+
+        throw new UserException("You cant update this user");
+
     }
 }

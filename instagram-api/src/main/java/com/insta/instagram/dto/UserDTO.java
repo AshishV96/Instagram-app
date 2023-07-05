@@ -19,6 +19,10 @@ public class UserDTO {
 		this.userImage = userImage;
 	}
 
+    public UserDTO() {
+
+    }
+
 	public Integer getId() {
 		return id;
 	}
