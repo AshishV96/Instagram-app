@@ -5,10 +5,11 @@ import com.insta.instagram.exceptions.UserException;
 import com.insta.instagram.model.User;
 import com.insta.instagram.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class UserServiceImplementation implements UserService {
 
     @Autowired
@@ -64,7 +65,15 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public User findUserByUsername(String username) throws UserException {
-        return null;
+
+        Optional<User> opt = userRepository.findByUsername(username);
+
+        if(opt.isPresent())
+        {
+            return opt.get();
+        }
+
+        throw new UserException("User not exist with username :"+username);
     }
 
     @Override
