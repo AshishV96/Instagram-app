@@ -5,15 +5,21 @@ import com.insta.instagram.exceptions.UserException;
 import com.insta.instagram.model.User;
 import com.insta.instagram.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class UserServiceImplementation implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     @Override
     public User registerUser(User user) throws UserException {
 
@@ -39,7 +45,7 @@ public class UserServiceImplementation implements UserService {
         User newUser = new User();
 
         newUser.setEmail(user.getEmail());
-        newUser.setPassword(user.getPassword());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         newUser.setUsername(user.getUsername());
         newUser.setName(user.getName());
 
