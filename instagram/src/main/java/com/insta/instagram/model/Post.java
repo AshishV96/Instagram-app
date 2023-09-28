@@ -51,6 +51,9 @@ public class Post {
 	@JoinTable(name="likedByUsers",joinColumns = @JoinColumn(name = "user_id"))
 	private Set<UserDTO> likedByUsers = new HashSet<>();
 
+	public Post() {
+	}
+
 	public Post(Integer id, String caption, String image, String location, LocalDateTime createdAt, UserDTO user,
 			List<Comment> comments, Set<UserDTO> likedByUsers) {
 		super();

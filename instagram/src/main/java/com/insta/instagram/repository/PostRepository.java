@@ -10,10 +10,10 @@ import com.insta.instagram.model.Post;
 
 public interface PostRepository extends JpaRepository<Post,Integer>{
 
-    @Query("elect p from post p where p.user.id = ?1")
+    @Query(value = "select p from Post p where p.user.id = ?1")
     public List<Post> findByUserId(Integer userId);
  
-    @Query("select p from post p where p.user.id in : users order by p.createdAt desc")
+    @Query(value = "select p from Post p where p.user.id in :users order by p.createdAt desc")
     public List<Post> findAllPostByUserIds(@Param("users") List<Integer> userIds);
 
 }
