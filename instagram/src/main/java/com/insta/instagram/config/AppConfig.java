@@ -9,15 +9,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Configuration
 public class AppConfig {
+    
     @Bean
     public SecurityFilterChain securityConfiguration(HttpSecurity http) throws Exception
     {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests().requestMatchers(HttpMethod.POST,"/signup").permitAll()
+                .and().authorizeHttpRequests().requestMatchers("/v3/**", "/swagger-ui/**").permitAll()
+                .and().authorizeHttpRequests().requestMatchers(HttpMethod.GET,"/getApiKey").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .addFilterAfter(new JwtTokenGeneratorFilter(), BasicAuthenticationFilter.class)
@@ -27,6 +29,7 @@ public class AppConfig {
 
         return http.build();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder()
     {

@@ -35,7 +35,7 @@ public class Story {
 	
 	private String caption;
 	
-	private LocalDateTime timeestamp;
+	private LocalDateTime timestamp;
 	
 	
 
@@ -43,13 +43,13 @@ public class Story {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(Integer id, UserDTO user, String image, String caption, LocalDateTime timeestamp) {
+	public Story(Integer id, UserDTO user, String image, String caption, LocalDateTime timestamp) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.image = image;
 		this.caption = caption;
-		this.timeestamp = timeestamp;
+		this.timestamp = timestamp;
 	}
 
 	public Integer getId() {
@@ -85,11 +85,11 @@ public class Story {
 	}
 
 	public LocalDateTime getTimeestamp() {
-		return timeestamp;
+		return timestamp;
 	}
 
-	public void setTimeestamp(LocalDateTime timeestamp) {
-		this.timeestamp = timeestamp;
+	public void setTimestamp(LocalDateTime timestamp) {
+		this.timestamp = timestamp;
 	}
 			
 }

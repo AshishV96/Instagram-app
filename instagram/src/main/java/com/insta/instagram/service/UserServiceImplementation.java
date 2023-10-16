@@ -118,11 +118,11 @@ public class UserServiceImplementation implements UserService {
 
         UserDTO following = new UserDTO();
 
-        following.setEmail(follower.getEmail());
-        following.setId(follower.getId());
-        following.setName(follower.getName());
-        following.setUserImage(follower.getUserImage());
-        following.setUsername(follower.getUsername());
+        following.setEmail(followUser.getEmail());
+        following.setId(followUser.getId());
+        following.setName(followUser.getName());
+        following.setUserImage(followUser.getImage());
+        following.setUsername(followUser.getUsername());
 
         reqUser.getFollowing().add(following);
         followUser.getFollower().add(follower);
@@ -149,11 +149,11 @@ public class UserServiceImplementation implements UserService {
 
         UserDTO following = new UserDTO();
 
-        following.setEmail(follower.getEmail());
-        following.setId(follower.getId());
-        following.setName(follower.getName());
-        following.setUserImage(follower.getUserImage());
-        following.setUsername(follower.getUsername());
+        following.setEmail(followUser.getEmail());
+        following.setId(followUser.getId());
+        following.setName(followUser.getName());
+        following.setUserImage(followUser.getImage());
+        following.setUsername(followUser.getUsername());
 
         reqUser.getFollowing().remove(following);
         followUser.getFollower().remove(follower);

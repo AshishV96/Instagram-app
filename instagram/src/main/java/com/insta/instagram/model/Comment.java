@@ -29,6 +29,9 @@ public class Comment {
 	
 	private LocalDateTime createdAt;
 
+	public Comment() {
+	}
+
 	public Comment(Integer id, UserDTO user, String content, Set<UserDTO> likedByUsers, LocalDateTime createdAt) {
 		super();
 		this.id = id;
