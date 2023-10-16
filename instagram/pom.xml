@@ -107,6 +107,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>Instagram-App</finalName>
 	</build>
 
 </project>
